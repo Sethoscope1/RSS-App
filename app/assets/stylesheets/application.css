@@ -11,3 +11,16 @@
  *= require_self
  *= require_tree .
  */
+
+h1, h2, h3, h4 {
+  font-family: sans-serif;
+}
+
+a {
+  color: red;
+  text-decoration: none;
+}
+
+hr {
+  style: dotted;
+}

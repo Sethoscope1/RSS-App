@@ -1,0 +1,11 @@
+<ul class="feeds-ul">
+  <% console.log(feeds) %>
+  <% _(feeds.models).each(function (feed) { %>
+    <li>
+      <%= feed.escape('title') %>
+      <a href="<%= feed.escape('url') %>"><%= feed.escape('url') %></a>
+    </li>
+  <% }); %>
+</ul>
+
+<button id="refresh-feeds">Refresh!</button>

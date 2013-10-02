@@ -1,0 +1,11 @@
+<ul class="entries-ul">
+  <% console.log(entries)%>
+  <% _(entries).each(function (entry) { %>
+    <li>
+      <h4><%= entry.escape('title') %></h4><br>
+      <p><a href="<%= entry.escape('url') %>"><%= entry.escape('url') %></a></p>
+    </li>
+  <% }); %>
+</ul>
+
+<button id="refresh-entries">Refresh!</button>
