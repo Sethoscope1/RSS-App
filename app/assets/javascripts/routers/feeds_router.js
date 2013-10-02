@@ -1,8 +1,10 @@
 RA.Routers.FeedsRouter = Backbone.Router.extend({
-  initialize: function ($rootEl, feeds) {
+  initialize: function ($rootEl, feeds, entries) {
     this.$rootEl = $rootEl;
-    this.feeds = feeds
+    this.feeds = feeds;
+    this.entries = entries;
   },
+
   routes: {
     "": "index",
     "feeds/new": "new",
@@ -22,6 +24,36 @@ RA.Routers.FeedsRouter = Backbone.Router.extend({
         that.$rootEl.html(indexView.render().$el);
       }
     })
+  },
+
+  show: function (id) {
+    var that = this;
+
+    var feed = that.feeds.get(id);
+    if (!feed) {
+      feed = new RA.Models.Feed({id: id});
+      feed.collection = that.feeds;
+      feed.fetch({
+        success: function () {
+          that.feeds.add(feed);
+        }
+      });
+    }
+
+    console.log(id)
+    var entries = that.entries;
+    // that.entries.select(function (entry) {
+    //   console.log(entry.get("feed_id"));
+    //   return entry.get("feed_id") === id;
+    // })
+    //
+    //
+    //
+    //   console.log(entries);
+
+    var feedView = new RA.Views.FeedShowView({model: feed, collection: entries});
+    that.$rootEl.html(feedView.render().$el);
   }
+
 
 });

@@ -1,0 +1,17 @@
+<h1 class="feed-show"><%= feed.escape('title') %></h1>
+
+<h2><%= feed.escape('url') %></h2>
+
+<ul class="feed-show-entries">
+  <% this.collection.each (function (entry) { %>
+    <li>
+      <%= entry.escape('title') %>
+      <a><%= entry.escape('link') %></a>
+    </li>
+  <%  }); %>
+</ul>
+
+<button id="refresh-entries">Refresh!</button>
+
+
+
